@@ -15,4 +15,7 @@ showStatus (x:xs) = case x of
 -- iteration 2
 
 updateAvailable :: [Char] -> [(Char, Status)] -> [Char]
-updateAvailable chars ((chr, sts):xs) = 
+updateAvailable chars [] = chars
+updateAvailable chars ((chr, sts):ys) = updateAvailable (filter (\inp -> (inp /= chr)||(sts /= Nowhere)) chars) ys
+
+
