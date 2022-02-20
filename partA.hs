@@ -18,4 +18,6 @@ updateAvailable :: [Char] -> [(Char, Status)] -> [Char]
 updateAvailable chars [] = chars
 updateAvailable chars ((chr, sts):ys) = updateAvailable (filter (\inp -> (inp /= chr)||(sts /= Nowhere)) chars) ys
 
+-- iteration 3
 
+leftMargin :: String
