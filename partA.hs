@@ -1,5 +1,6 @@
 module PartA where
 import Base
+import Data.List
 
 -- iteration 1
 
@@ -21,4 +22,5 @@ updateAvailable chars ((chr, sts):ys) = updateAvailable (filter (\inp -> (inp /=
 
 -- iteration 3
 
--- leftMargin :: String
+leftMargin :: String
+leftMargin = intercalate "" [ " " | _ <- [1..(length (prompt Start))]]
