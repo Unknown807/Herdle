@@ -1,3 +1,4 @@
+module PartA where
 import Base
 
 -- iteration 1
@@ -20,4 +21,4 @@ updateAvailable chars ((chr, sts):ys) = updateAvailable (filter (\inp -> (inp /=
 
 -- iteration 3
 
-leftMargin :: String
+-- leftMargin :: String
