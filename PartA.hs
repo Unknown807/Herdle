@@ -1,4 +1,5 @@
 module PartA where
+
 import Base
 import Data.List
 
