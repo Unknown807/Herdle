@@ -105,7 +105,8 @@ getGuess' :: Int -> Int -> String -> String -> IO String
 getGuess' n m cword availableChars 
     | n > 0 = do
         inp <- getChar'
-        inp <- if (inp `elem` availableChars) then
+        inp <- if (inp `elem` availableChars) 
+            then
                 getGuess' (n-1) (m+1) (cword++(toLower inp):"") availableChars
             else do
                 if (inp == '.' && m /= 0) then do
@@ -138,9 +139,9 @@ loop word availableChars attemptN loopN = do
     else do
         putStr ('\n' : prompt Guess)
         userGuess <- getGuess (length word) availableChars
-        checkedGuess <- return (checkGuess userGuess word)
-        guessStats <- return [s | (c, s) <- checkedGuess]
-        statuses <- return (showStatus guessStats)
+        let checkedGuess = checkGuess userGuess word
+        let guessStats = [s | (c, s) <- checkedGuess]
+        let statuses = showStatus guessStats
         
         putStrLn (leftMargin++statuses)
 
