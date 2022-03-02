@@ -1,0 +1,7 @@
+rings
+souls
+emote
+smart
+might
+elden
+poise

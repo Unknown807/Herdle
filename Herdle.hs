@@ -5,6 +5,8 @@
 
 -- Imports shared by all parts
 import Data.List
+import Data.Time.Clock
+import Data.Time.Calendar
 -- Following imports needed for the `getChar'` fix
 import Data.Char
 import Foreign.C.Types
@@ -148,3 +150,18 @@ loop word availableChars attemptN loopN = do
         else
             loop word (updateAvailable availableChars checkedGuess) (attemptN+1) (loopN-1)
 
+-- Part E
+
+strSplitter :: Char -> String -> [String]
+strSplitter _ "" = []
+strSplitter delim str = 
+    let (start, rest) = break (== delim) str
+        (_, remain) = span (== delim) rest
+    in start : strSplitter delim remain
+
+main :: IO ()
+main = do
+    now <- getCurrentTime
+    let (_, _, day) = toGregorian $ utctDay now
+    wordlist <- (readFile "wordlist.txt") >>= (\inp -> return (strSplitter '\n' inp))
+    go (wordlist!!(day `mod` 7))
