@@ -4,6 +4,7 @@
 {-# LANGUAGE CPP #-}
 
 -- Imports shared by all parts
+import System.IO
 import Data.List
 import Data.Time.Clock
 import Data.Time.Calendar
@@ -162,6 +163,8 @@ strSplitter delim str =
 
 main :: IO ()
 main = do
+    hSetBuffering stdin NoBuffering
+    hSetBuffering stdout NoBuffering
     now <- getCurrentTime
     let (_, _, day) = toGregorian $ utctDay now
     wordlist <- (readFile "wordlist.txt") >>= (\inp -> return (strSplitter '\n' inp))
