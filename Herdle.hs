@@ -106,6 +106,7 @@ getGuess' :: Int -> Int -> String -> String -> IO String
 getGuess' n m cword availableChars 
     | n > 0 = do
         inp <- getChar'
+        putStr " "
         inp <- if (inp `elem` availableChars) 
             then
                 getGuess' (n-1) (m+1) (cword++(toLower inp):"") availableChars
@@ -145,11 +146,12 @@ loop word availableChars attemptN loopN = do
         let statuses = showStatus guessStats
         
         putStrLn (leftMargin++statuses)
+        putChar '\n'
 
         if (and $ map (== Here) guessStats) then do
             putStrLn (prompt Win)
             return ()
-        else
+        else do
             loop word (updateAvailable availableChars checkedGuess) (attemptN+1) (loopN-1)
 
 -- Part E
