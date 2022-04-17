@@ -1,4 +1,4 @@
--- Originally part of Base.hs
+-- Originally part of Base.hs by Dominic Orchard
 
 {-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE CPP #-}
